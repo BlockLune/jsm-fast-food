@@ -20,7 +20,7 @@ This means that any file with the extension `.png` will be treated as a module a
 
 The [`TouchableOpacity`](https://reactnative.dev/docs/touchableopacity) and [`Pressable`](https://reactnative.dev/docs/pressable) components from `react-native` are used to create interactive elements that can be pressed or tapped.
 
-The difference between them is that `TouchableOpacity` is a wrapper that can be animated, while `Pressable` is a more general component that can be used to create interactive elements.
+The `Pressable` component is a more general and powerful component which provides more control over the interaction.
 
 ### Safe Area
 
