@@ -1,14 +1,15 @@
 import CustomButton from "@/components/CustomButton";
 import CustomInput from "@/components/CustomInput";
-import { signIn } from "@/lib/appwrite";
+import useAuthStore from "@/store/auth.store";
 import * as Sentry from "@sentry/react-native";
-import { Link, router } from "expo-router";
+import { Link } from "expo-router";
 import { useState } from "react";
 import { Alert, Text, View } from "react-native";
 
 const SignIn = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({ email: "", password: "" });
+  const { login } = useAuthStore();
   const submit = async () => {
     if (!form.email || !form.password) {
       Alert.alert("Error", "Please enter valid email and password.");
@@ -17,12 +18,9 @@ const SignIn = () => {
 
     setIsSubmitting(true);
     try {
-      await signIn({
-        email: form.email,
-        password: form.password,
-      });
+      await login(form.email, form.password);
       Alert.alert("Success", "You have signed in successfully!");
-      router.replace("/");
+      // 移除手动导航，让路由守卫自动处理
     } catch (error: any) {
       Alert.alert("Error", error.message || "Something went wrong.");
       Sentry.captureEvent(error);
@@ -53,7 +51,7 @@ const SignIn = () => {
         <Text className="base-regular text-gray-100">
           Don&apos;t have an account?
         </Text>
-        <Link href="/sign-up" className="base-bold text-primary">
+        <Link href="/(auth)/sign-up" className="base-bold text-primary">
           Sign Up
         </Link>
       </View>

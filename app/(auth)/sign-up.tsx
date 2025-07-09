@@ -21,7 +21,7 @@ const SignUp = () => {
         password: form.password,
         name: form.name,
       });
-      router.replace("/");
+      router.replace("/(tabs)");
     } catch (error: any) {
       Alert.alert("Error", error.message || "Something went wrong.");
     }
@@ -57,7 +57,7 @@ const SignUp = () => {
         <Text className="base-regular text-gray-100">
           Already have an account?
         </Text>
-        <Link href="/sign-in" className="base-bold text-primary">
+        <Link href="/(auth)/sign-in" className="base-bold text-primary">
           Sign In
         </Link>
       </View>

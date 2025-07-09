@@ -60,7 +60,32 @@ export const createUser = async ({
 
 export const signIn = async ({ email, password }: SignInParams) => {
   try {
+    try {
+      await account.deleteSession("current");
+    } catch (error) {
+      console.log("No existing session to delete");
+    }
+    
     const session = await account.createEmailPasswordSession(email, password);
+    return session;
+  } catch (e) {
+    throw new Error(e as string);
+  }
+};
+
+export const signOut = async () => {
+  try {
+    const session = await account.deleteSession("current");
+    return session;
+  } catch (e) {
+    throw new Error(e as string);
+  }
+};
+
+export const deleteAllSessions = async () => {
+  try {
+    const sessions = await account.deleteSessions();
+    return sessions;
   } catch (e) {
     throw new Error(e as string);
   }
