@@ -15,7 +15,6 @@ declare module "*.png" {
 
 This means that any file with the extension `.png` will be treated as a module and can be imported or exported.
 
-
 ### TouchableOpacity & Pressable
 
 The [`TouchableOpacity`](https://reactnative.dev/docs/touchableopacity) and [`Pressable`](https://reactnative.dev/docs/pressable) components from `react-native` are used to create interactive elements that can be pressed or tapped.
@@ -42,9 +41,9 @@ The [`FlatList`](https://reactnative.dev/docs/flatlist) component is used to dis
 
 [Appwrite](https://appwrite.io/) is a backend as a service (BaaS) that provides a set of APIs to handle user authentication, database, storage, and more.
 
-### Zentry
+### Sentry
 
-[Zentry](https://zentry.io/) is a platform for monitoring and error tracking.
+[Sentry](https://sentry.io) is a platform for monitoring and error tracking.
 
 ### Zustand
 
