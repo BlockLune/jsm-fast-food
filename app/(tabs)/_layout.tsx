@@ -28,7 +28,7 @@ export default function TabsLayout() {
   const { isAuthenticated } = useAuthStore();
 
   if (!isAuthenticated) {
-    return <Redirect href="/(auth)/sign-in" />;
+    return <Redirect href="/sign-in" />;
   }
 
   return (
@@ -50,19 +50,16 @@ export default function TabsLayout() {
           shadowOffset: { width: 0, height: 2 },
           shadowOpacity: 0.1,
           shadowRadius: 4,
-          elevation: 5
-        }
-      }}>
+          elevation: 5,
+        },
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
           title: "Home",
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon
-              title="Home"
-              icon={images.home}
-              focused={focused}
-            />
+            <TabBarIcon title="Home" icon={images.home} focused={focused} />
           ),
         }}
       />
@@ -71,11 +68,7 @@ export default function TabsLayout() {
         options={{
           title: "Search",
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon
-              title="Search"
-              icon={images.search}
-              focused={focused}
-            />
+            <TabBarIcon title="Search" icon={images.search} focused={focused} />
           ),
         }}
       />
@@ -84,11 +77,7 @@ export default function TabsLayout() {
         options={{
           title: "Cart",
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon
-              title="Cart"
-              icon={images.bag}
-              focused={focused}
-            />
+            <TabBarIcon title="Cart" icon={images.bag} focused={focused} />
           ),
         }}
       />
@@ -105,6 +94,6 @@ export default function TabsLayout() {
           ),
         }}
       />
-    </Tabs >
+    </Tabs>
   );
 }

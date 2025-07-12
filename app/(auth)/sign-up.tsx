@@ -8,24 +8,27 @@ import { Alert, Text, View } from "react-native";
 const SignUp = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", password: "" });
+
   const submit = async () => {
-    if (!form.name || !form.email || !form.password) {
-      Alert.alert("Error", "Please enter valid email and password.");
-      return;
-    }
+    const { name, email, password } = form;
+
+    if (!name || !email || !password)
+      return Alert.alert(
+        "Error",
+        "Please enter valid email address & password."
+      );
 
     setIsSubmitting(true);
+
     try {
-      await createUser({
-        email: form.email,
-        password: form.password,
-        name: form.name,
-      });
-      router.replace("/(tabs)");
+      await createUser({ email, password, name });
+
+      router.replace("/");
     } catch (error: any) {
-      Alert.alert("Error", error.message || "Something went wrong.");
+      Alert.alert("Error", error.message);
+    } finally {
+      setIsSubmitting(false);
     }
-    setIsSubmitting(false);
   };
 
   return (
@@ -34,7 +37,7 @@ const SignUp = () => {
         placeholder="Enter your full name"
         value={form.name}
         onChangeText={(text) => setForm((prev) => ({ ...prev, name: text }))}
-        label="Full Name"
+        label="Full name"
       />
       <CustomInput
         placeholder="Enter your email"
@@ -52,12 +55,14 @@ const SignUp = () => {
         label="Password"
         secureTextEntry={true}
       />
+
       <CustomButton title="Sign Up" isLoading={isSubmitting} onPress={submit} />
-      <View className="justify-center mt-5 flex-row gap-2">
+
+      <View className="flex justify-center mt-5 flex-row gap-2">
         <Text className="base-regular text-gray-100">
           Already have an account?
         </Text>
-        <Link href="/(auth)/sign-in" className="base-bold text-primary">
+        <Link href="/sign-in" className="base-bold text-primary">
           Sign In
         </Link>
       </View>
